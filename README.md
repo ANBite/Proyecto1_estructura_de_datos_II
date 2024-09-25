@@ -1,1 +1,2 @@
-# Proyecto1_estructura_de_datos_II
+#   Proyecto #1 del curso
+#   ESTRUCTURA DE DATOS II
