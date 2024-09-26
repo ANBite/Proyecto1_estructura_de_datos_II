@@ -56,7 +56,7 @@ class Sales{  //clase ventas
             return "No hay productos disponibles"
         let min : Node = this.heap[1]; //Se obtiene el valor de la posición 1
         this.heap[1] = this.heap[this.n]; //Se cambia el valor de la posición 1, con el valor de la última posición
-        //delete this.heap[this.n]; //Se elimina el último elemento de la lista
+        delete this.heap[this.n]; //Se elimina el último elemento de la lista
         this.n --;
         this.sink(1) //Es un procedimiento que reestructura el arbol AVL, parte de la posición 1 porque está en la raíz
         return min.getActionAndPrice();
@@ -90,15 +90,22 @@ class Sales{  //clase ventas
 
 //main
 let pendientes: Sales = new Sales(10);
-pendientes.insert(new Node("Estudiar estructuras 2", 1))
-pendientes.insert(new Node("Escuchar música", 2))
-pendientes.insert(new Node("Jugar Valo", 3))
-pendientes.insert(new Node("Completar códigos", 1))
-pendientes.insert(new Node("Ver videos", 5))
-pendientes.insert(new Node("Comer galletita", 2))
+pendientes.insert(new Node("Pollo", 23))
+pendientes.insert(new Node("Galletas", 12))
+pendientes.insert(new Node("Pizza", 31))
+pendientes.insert(new Node("Audifonos", 100))
+pendientes.insert(new Node("Higos", 12))
+pendientes.insert(new Node("Papas fritas", 5))
 
-console.log(`La siguiente tarea a calificar es: ${pendientes.getNextTask()}`)
-console.log(`La siguiente tarea a calificar es: ${pendientes.getNextTask()}`)
-console.log(`La siguiente tarea a calificar es: ${pendientes.getNextTask()}`)
-console.log(`La siguiente tarea a calificar es: ${pendientes.getNextTask()}`)
-console.log(`La siguiente tarea a calificar es: ${pendientes.getNextTask()}`)
+
+
+console.log(pendientes.getNextTask())
+console.log(pendientes.getNextTask())
+console.log(pendientes.getNextTask())
+console.log(pendientes.getNextTask())
+console.log(pendientes.getNextTask())
+console.log(pendientes.getNextTask())
+console.log(pendientes.getNextTask())
+
+
+
