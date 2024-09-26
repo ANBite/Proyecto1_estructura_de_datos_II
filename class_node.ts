@@ -1,4 +1,4 @@
-export class node{
+export class Node{
     private action : string;
     private price : number;
 
@@ -7,15 +7,15 @@ export class node{
         this.price = price;
     }
 
-    public getaction(): string{
+    public getAction(): string{
         return this.action;
     }
 
-    public getprice(): number{
+    public getPrice(): number{
         return this.price
     }
 
-    public getactionandprice(): string{
+    public getActionAndPrice(): string{
         return "Producto " + this.action + " con un costo de: " + this.price
     }
 }
