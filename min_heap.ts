@@ -1,16 +1,15 @@
 import { Node } from "./class_node";
 
-class MinHeapTask{
-    //Atributos
-    private heap : Node[]; //Montículo creado como array tipo numérico
-    private n : number; //n = cantidad de elementos
+class Sales{  //clase ventas
+    private heap : Node[]; 
+    private n : number; //Cantidad de elementos en la lista
 
-    constructor(size: number){ //Recibe el tamaño que tendrá el array
-        this.heap = new Array(size + 1); //Se inicializa un nuevo array
+    constructor(size: number){ 
+        this.heap = new Array(size + 1);
         this.n = 0;
     }
-    //Métodos
-    public isEmpty(): boolean{ //Verifica si el array está vacía
+
+    public isEmpty(): boolean{
         return this.n == 0;
 
     }
@@ -90,7 +89,7 @@ class MinHeapTask{
 }
 
 //main
-let pendientes: MinHeapTask = new MinHeapTask(10);
+let pendientes: Sales = new Sales(10);
 pendientes.insert(new Node("Estudiar estructuras 2", 1))
 pendientes.insert(new Node("Escuchar música", 2))
 pendientes.insert(new Node("Jugar Valo", 3))
