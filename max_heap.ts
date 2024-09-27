@@ -78,15 +78,6 @@ class Shopping{  //clase ventas
             k = j;
         }
     }
-
-
-    public print(): void{
-        let tree: string = ""; 
-        for (const value of this.sale){
-            tree += " " + value.getAction() + " ";
-        }
-        console.log(tree);
-    }
 }
 
 //main
