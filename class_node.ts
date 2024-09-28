@@ -1,10 +1,12 @@
 export class Node{
     private action : string;
     private price : number;
+    private amount: number;
 
-    constructor(action: string, price: number){
+    constructor(amount: number, action: string, price: number){
         this.action = action;
         this.price = price;
+        this.amount = amount;
     }
 
     public getAction(): string{
@@ -12,10 +14,14 @@ export class Node{
     }
 
     public getPrice(): number{
-        return this.price
+        return this.price;
     }
 
-    public getActionAndPrice(): string{
-        return "Producto " + this.action + " con un costo de: " + this.price
+    public getAmount(): number{
+        return this.amount;
+    }
+
+    public getActionPriceAndAmount(): string{
+        return "| Nombre: " + this.action + " | existen: " + this.amount + " productos | Con un precio de: " + this.price + "|" 
     }
 }

@@ -76,23 +76,17 @@ class Sales{  //clase Ventas
 
     //Mostrar TODO
     public showAll(): string {
-        let temp_count : number = this.items;
-        while (true) {
-            if(temp_count == 0){
-                return "No hay productos disponibles";
-            }
-    
-            //Se obtiene el valor de la posición 1 (raíz)
-            let minimun : Node = this.sale[1];
-            //Se cambia el valor de la posición 1 con la posición útlima
-            this.sale[1] = this.sale[temp_count];
-            //se elimina el último elemento de la lista 
-            //delete this.sale[temp_count]; 
-            temp_count --;
-            //Se restructura el arbol otra vez, partiendo desde la raíz
-            this.restructureTree(1);
-            return minimun.getActionAndPrice();
+        if (this.items === 0) {
+            return "No hay productos disponibles";
         }
+    
+        let result: string[] = [];
+    
+        for (let i = 1; i <= this.items; i++) {
+            result.push(this.sale[i].getActionPriceAndAmount());
+        }
+    
+        return result.join("\n");
     }
 
     //Verifica si está vacía el array
@@ -107,28 +101,67 @@ class Sales{  //clase Ventas
 
     //Mostrar la raíz
     public seeMin(): string {
-        return "Producto: " + this.sale[1].getAction() + "Tiene un costo de: "+ this.sale[1].getPrice();
+        return "| Nombre: " + this.sale[1].getAction() + " | existen: " + this.sale[1].getAmount() + 
+        " productos | Con un precio de: " + this.sale[1].getPrice();
     }
+
+    //Poder ver la estructura completa de la lista
+    public showStructureoftheList(): void{
+        for (const value of this.sale){
+            console.log(value);
+        }
+    }
+
+
+    public searchAndDeleteByPrice(price: number, amountToRemove: number): string {
+        // Solo se puede operar con el producto en la raíz
+        if (this.items === 0 && this.sale[1].getPrice() !== price) {
+            return `No se encontró ningún producto con el precio de ${price}`;
+        }
+    
+        // Obtenemos el producto en la raíz
+        let product = this.sale[1];
+        
+        if (product.getPrice() === price) {
+            if (product.getAmount() === amountToRemove) {
+                // Si la cantidad es igual a la cantidad a eliminar, eliminamos el producto
+                this.sale[1] = this.sale[this.items]; // Mover el último producto a la raíz
+                this.items--; // Reducir el número de productos
+    
+                // Reestructuramos el heap desde la raíz
+                this.restructureTree(1);
+    
+                return `Producto vendido: ${product.getActionPriceAndAmount()}`;
+            } else if (product.getAmount() > amountToRemove) {
+                // Si la cantidad es mayor, solo restamos la cantidad
+                // Necesitarás implementar un método para restar la cantidad, o puedes modificar la propiedad directamente
+                (product as any).amount -= amountToRemove; // Restamos la cantidad
+                return `Cantidad actual: ${product.getActionPriceAndAmount()}`;
+            } else {
+                return "No hay suficientes productos a vender\n" +
+                `Cantidad solicitada ${amountToRemove}\n` + 
+                `Cantidad disponible. ${product.getAmount()}`;
+            }
+        }
+    
+        return `No se encontró ningún producto con el precio de ${price}`;
+    }
+
 }
 
 //main
 let products: Sales = new Sales(10);
-products.insert(new Node("Pollo", 23));
-products.insert(new Node("Galletas", 12));
-products.insert(new Node("Pizza", 31));
-products.insert(new Node("Audifonos", 100));
-products.insert(new Node("Higos", 12));
-products.insert(new Node("Papas fritas", 5));
+products.insert(new Node(1,"Pollo", 23));
+products.insert(new Node(6,"Galletas", 12));
+products.insert(new Node(9,"Pizza", 31));
+products.insert(new Node(93,"Audífonos", 100));
+products.insert(new Node(12,"Higos", 12));
+products.insert(new Node(54,"Papas fritas", 5));
 
 
-
-let i: number = 0;
-let limit: number = products.getQuantity();
-
-while (i < limit){
-    console.log(products.showAll());
-    i += 1;
-}
+//products.showStructureoftheList()
 
 
-
+//console.log(products.seeMin())
+console.log(products.searchAndDeleteByPrice(5, 80));
+//console.log(products.showAll())
