@@ -126,36 +126,12 @@ export class Shopping{  //clase Ventas
         }
     }
 
-    public searchAndDeleteByPrice(price: number, amountToRemove: number): string {
-        // Solo se puede operar con el producto en la raíz
-        if (this.items === 0 && this.buy[1].getPrice() !== price) {
-            return `No se encontró ningún producto con el precio de ${price}`;
-        }
-    
-        // Obtenemos el producto en la raíz
-        let product = this.buy[1];
-        
-        if (product.getPrice() === price) {
-            if (product.getAmount() === amountToRemove) {
-                // Si la cantidad es igual a la cantidad a eliminar, eliminamos el producto
-                this.buy[1] = this.buy[this.items]; // Mover el último producto a la raíz
-                this.items--; // Reducir el número de productos
-    
-                // Reestructuramos el heap desde la raíz
-                this.restructureTree(1);
-    
-                return `Producto vendido: ${product.getActionPriceAndAmount()}`;
-            } else if (product.getAmount() > amountToRemove) {
-                // Si la cantidad es mayor, solo restamos la cantidad
-                (product as any).amount -= amountToRemove; // Restamos la cantidad
-                return `Cantidad actual: ${product.getActionPriceAndAmount()}`;
-            } else {
-                return "No hay suficientes productos a comprar\n" +
-                `Cantidad solicitada ${amountToRemove}\n` + 
-                `Cantidad disponible. ${product.getAmount()}`;
-            }
-        }
-    
-        return `No se encontró ningún producto con el precio de ${price}`;
+    public deleteRoot(): string{
+        let temproot : string = this.buy[1].getActionPriceAndAmount();
+        this.buy[1] = this.buy[this.items]; // Mover el último producto a la raíz
+        this.items--; // Reducir el número de productos
+
+        this.restructureTree(1);
+        return temproot;
     }
 }
