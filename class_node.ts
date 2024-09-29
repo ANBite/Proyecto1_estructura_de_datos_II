@@ -22,6 +22,6 @@ export class Node{
     }
 
     public getActionPriceAndAmount(): string{
-        return "| Nombre: " + this.action + " | existen: " + this.amount + " productos | Con un precio de: " + this.price + "|" 
+        return "║ Nombre: " + this.action + " | existen: " + this.amount + " productos | Con un precio de: " + this.price + " |" 
     }
 }

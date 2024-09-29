@@ -1,6 +1,6 @@
 import { Node } from "./class_node";
 
-class Shopping{  //clase Ventas
+export class Shopping{  //clase Ventas
     private buy : Node[]; //Array tipo node
     private items : number; //Cantidad de elementos existentes
 
@@ -89,6 +89,21 @@ class Shopping{  //clase Ventas
         return result.join("\n");
     }
 
+    //Mostrar el precio que tiene la raíz
+    public showPriceRoot(): number{
+        return this.buy[1].getPrice();
+    }
+
+    //Mostrar el producto que tiene la raíz
+    public showProductRoot(): string{
+        return this.buy[1].getAction();
+    }
+
+    //Mostrar la cantidad que tiene la raíz
+    public showAmountRoot(): number{
+        return this.buy[1].getAmount();
+    }
+
     //Verifica si está vacía el array
     public isEmpty(): boolean{
         return this.items == 0;
@@ -132,7 +147,6 @@ class Shopping{  //clase Ventas
                 return `Producto vendido: ${product.getActionPriceAndAmount()}`;
             } else if (product.getAmount() > amountToRemove) {
                 // Si la cantidad es mayor, solo restamos la cantidad
-                // Necesitarás implementar un método para restar la cantidad, o puedes modificar la propiedad directamente
                 (product as any).amount -= amountToRemove; // Restamos la cantidad
                 return `Cantidad actual: ${product.getActionPriceAndAmount()}`;
             } else {
@@ -145,15 +159,3 @@ class Shopping{  //clase Ventas
         return `No se encontró ningún producto con el precio de ${price}`;
     }
 }
-
-//main
-let products: Shopping = new Shopping(10);
-products.insert(new Node(4,"Pollo", 23));
-products.insert(new Node(5,"Galletas", 12));
-products.insert(new Node(7,"Pizza", 31));
-products.insert(new Node(9,"Audifonos", 100));
-products.insert(new Node(12,"Higos", 12));
-products.insert(new Node(32,"Papas fritas", 5));
-
-//products.showStructureoftheList()
-console.log(products.showAll())
