@@ -109,4 +109,3 @@ console.log("╔═════════════════════�
 console.log("Compras disponibles:");
 console.log(class_shopping.showAll());
 console.log("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
-
